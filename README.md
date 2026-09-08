@@ -1,40 +1,40 @@
 Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
-\<p *align*="center">
+<p *align*="center">
 
-  \<strong>Daniel Ruiz Lopez\</strong>\<br>
+  <strong>Daniel Ruiz Lopez</strong><br>
 
   Junior Data Engineer
 
-\</p>
+</p>
 
-\<p *align*="center">
+<p *align*="center">
 
-  \<a href="https\://www\.linkedin.com/in/danielruizl/">LinkedIn\</a> |
+  <a href="https://www.linkedin.com/in/danielruizl/">LinkedIn</a> |
 
-  \<a href="https\://github.com/danielruiz501">GitHub\</a> |
+  <a href="https://github.com/danielruiz501">GitHub</a> |
 
-  \<a href="mailto\:danielruizlopez889\@gmail.com">Email\</a>
+  <a href="mailto:danielruizlopez889@gmail.com">Email</a>
 
-\</p>
+</p>
 
-\<p *align*="center">
+<p *align*="center">
 
-  \<img src="https\://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python">
 
-  \<img src="https\://img.shields.io/badge/Apache%20Kafka-4.1.2-black?logo=apachekafka&logoColor=white" alt="Apache Kafka">
+  <img src="https://img.shields.io/badge/Apache%20Kafka-4.1.2-black?logo=apachekafka&logoColor=white" alt="Apache Kafka">
 
-  \<img src="https\://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS">
+  <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS">
 
-  \<img src="https\://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white" alt="Amazon EC2">
+  <img src="https://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white" alt="Amazon EC2">
 
-  \<img src="https\://img.shields.io/badge/Amazon%20S3-Data%20Lake-red?logo=amazons3&logoColor=white" alt="Amazon S3">
+  <img src="https://img.shields.io/badge/Amazon%20S3-Data%20Lake-red?logo=amazons3&logoColor=white" alt="Amazon S3">
 
-  \<img src="https\://img.shields.io/badge/AWS%20Glue-ETL-purple?logo=amazonaws&logoColor=white" alt="AWS Glue">
+  <img src="https://img.shields.io/badge/AWS%20Glue-ETL-purple?logo=amazonaws&logoColor=white" alt="AWS Glue">
 
-  \<img src="https\://img.shields.io/badge/Amazon%20Athena-SQL-blue?logo=amazonaws&logoColor=white" alt="Amazon Athena">
+  <img src="https://img.shields.io/badge/Amazon%20Athena-SQL-blue?logo=amazonaws&logoColor=white" alt="Amazon Athena">
 
-\</p>
+</p>
 
 Overview
 
@@ -47,7 +47,6 @@ Dataset note: The sales dataset used in this project is synthetic and was genera
 Architecture
 
 ![Architecture](architecture/architecture.png)
-![Architecture]\(architecture/architecture.png)
 
 
 
@@ -169,7 +168,7 @@ s3://daniel-kafka-sales-pipeline-8/
 
 └── processed/
 
-    └── \*.snappy.parquet
+    └── *.snappy.parquet
 
 The raw zone stores the original streaming events as JSON.
 
@@ -193,9 +192,9 @@ The ETL transformation converted:
 
 quantity       VARCHAR → INTEGER
 
-unit\_price     VARCHAR → DOUBLE
+unit_price     VARCHAR → DOUBLE
 
-total\_amount   VARCHAR → DOUBLE
+total_amount   VARCHAR → DOUBLE
 
 Amazon Athena
 
@@ -205,37 +204,37 @@ Because the ETL converted the numeric fields to appropriate numeric types, analy
 
 Data Flow
 
-1\. Data Generation
+1. Data Generation
 
 A synthetic e-commerce sales dataset containing 10,000 records was generated in CSV format.
 
 Main fields include:
 
-order\_id
+order_id
 
-customer\_id
+customer_id
 
-product\_id
+product_id
 
-product\_name
+product_name
 
 category
 
 quantity
 
-unit\_price
+unit_price
 
-total\_amount
+total_amount
 
 country
 
-payment\_method
+payment_method
 
-order\_status
+order_status
 
-order\_timestamp
+order_timestamp
 
-2\. Kafka Producer
+2. Kafka Producer
 
 The Python Producer reads the CSV and publishes sales events to:
 
@@ -245,33 +244,33 @@ Example event:
 
 {
 
-  "order\_id": "ORD-100315",
+  "order_id": "ORD-100315",
 
-  "customer\_id": "CUST-12365",
+  "customer_id": "CUST-12365",
 
-  "product\_id": "PROD-1145",
+  "product_id": "PROD-1145",
 
-  "product\_name": "Jeans",
+  "product_name": "Jeans",
 
   "category": "Apparel",
 
   "quantity": "2",
 
-  "unit\_price": "91.97",
+  "unit_price": "91.97",
 
-  "total\_amount": "183.94",
+  "total_amount": "183.94",
 
   "country": "Mexico",
 
-  "payment\_method": "Credit Card",
+  "payment_method": "Credit Card",
 
-  "order\_status": "Completed",
+  "order_status": "Completed",
 
-  "order\_timestamp": "2026-01-01 02:01:10"
+  "order_timestamp": "2026-01-01 02:01:10"
 
 }
 
-3\. Kafka Consumer
+3. Kafka Consumer
 
 The Python Consumer:
 
@@ -281,19 +280,19 @@ Validates JSON events
 
 Skips invalid events
 
-Extracts order\_id
+Extracts order_id
 
 Writes valid events to S3
 
 Uses the EC2 IAM role instead of hard-coded AWS credentials
 
-4\. Raw Data Layer
+4. Raw Data Layer
 
 Valid Kafka events are stored in:
 
 s3://daniel-kafka-sales-pipeline-8/raw/
 
-5\. Glue ETL
+5. Glue ETL
 
 AWS Glue reads the raw JSON data and transforms numeric fields into appropriate data types.
 
@@ -305,13 +304,13 @@ as:
 
 Parquet + Snappy
 
-6\. Data Catalog
+6. Data Catalog
 
 AWS Glue Crawlers discover the schemas for both layers.
 
 Glue database:
 
-kafka\_sales\_db
+kafka_sales_db
 
 Tables:
 
@@ -319,7 +318,7 @@ raw
 
 processed
 
-7\. Athena Analytics
+7. Athena Analytics
 
 Amazon Athena queries the processed data directly from S3.
 
@@ -333,15 +332,15 @@ SELECT
 
     category,
 
-    COUNT(\*) AS total\_orders,
+    COUNT(*) AS total_orders,
 
-    SUM(total\_amount) AS total\_sales
+    SUM(total_amount) AS total_sales
 
 FROM processed
 
 GROUP BY category
 
-ORDER BY total\_sales DESC;
+ORDER BY total_sales DESC;
 
 Units Sold and Sales by Category
 
@@ -349,15 +348,15 @@ SELECT
 
     category,
 
-    SUM(quantity) AS units\_sold,
+    SUM(quantity) AS units_sold,
 
-    SUM(total\_amount) AS total\_sales
+    SUM(total_amount) AS total_sales
 
 FROM processed
 
 GROUP BY category
 
-ORDER BY total\_sales DESC;
+ORDER BY total_sales DESC;
 
 Sales by Country
 
@@ -365,49 +364,49 @@ SELECT
 
     country,
 
-    COUNT(\*) AS total\_orders,
+    COUNT(*) AS total_orders,
 
-    SUM(total\_amount) AS total\_sales
+    SUM(total_amount) AS total_sales
 
 FROM processed
 
 GROUP BY country
 
-ORDER BY total\_sales DESC;
+ORDER BY total_sales DESC;
 
 Top Products
 
 SELECT
 
-    product\_name,
+    product_name,
 
     category,
 
-    SUM(quantity) AS units\_sold,
+    SUM(quantity) AS units_sold,
 
-    SUM(total\_amount) AS total\_sales
+    SUM(total_amount) AS total_sales
 
 FROM processed
 
-GROUP BY product\_name, category
+GROUP BY product_name, category
 
-ORDER BY units\_sold DESC, total\_sales DESC;
+ORDER BY units_sold DESC, total_sales DESC;
 
 Sales by Order Status
 
 SELECT
 
-    order\_status,
+    order_status,
 
-    COUNT(\*) AS total\_orders,
+    COUNT(*) AS total_orders,
 
-    SUM(total\_amount) AS total\_sales
+    SUM(total_amount) AS total_sales
 
 FROM processed
 
-GROUP BY order\_status
+GROUP BY order_status
 
-ORDER BY total\_sales DESC;
+ORDER BY total_sales DESC;
 
 Project Results
 
@@ -495,7 +494,7 @@ aws-kafka-real-time-pipeline-8/
 
 ├── data/
 
-│   └── sales\_data.csv
+│   └── sales_data.csv
 
 │
 
@@ -540,6 +539,11 @@ aws-kafka-real-time-pipeline-8/
 │
 
 ├── sql/
+│   ├── sales_by_category.sql
+│   ├── sales_by_country.sql
+│   ├── sales_by_status.sql
+│   ├── top_products.sql
+│   └── units_sold_by_category.sql
 
 │
 
@@ -554,6 +558,7 @@ aws-kafka-real-time-pipeline-8/
 Screenshots
 
 Architecture
+![Architecture](architecture/architecture.png)
 
 
 
@@ -664,8 +669,8 @@ Daniel Ruiz Lopez
 
 Junior Data Engineer
 
-LinkedIn: https\://www\.linkedin.com/in/danielruizl/
+LinkedIn: https://www.linkedin.com/in/danielruizl/
 
-GitHub: https\://github.com/danielruiz501
+GitHub: https://github.com/danielruiz501
 
-Email: danielruizlopez889\@gmail.com
+Email: danielruizlopez889@gmail.com
