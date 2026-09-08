@@ -46,7 +46,7 @@ The project demonstrates a complete modern data engineering workflow:
 
 ## 🏗️ Architecture
 
-![Architecture](architecture.png)
+![Architecture](architecture/architecture.png)
 
 ### Data Flow
 
@@ -81,6 +81,7 @@ Amazon Athena
     │
     ▼
 SQL Analytics
+```
 
 ---
 
@@ -100,6 +101,9 @@ The project uses a Kafka topic called:
 
 ```text
 sales-events
+```
+
+The topic receives sales events from the Python producer and makes them available to the Python consumer.
 
 ### 3. Python Kafka Producer
 
@@ -115,6 +119,7 @@ Python Producer
      │
      ▼
 Kafka Topic: sales-events
+```
 
 ### 4. Python Kafka Consumer
 
@@ -132,8 +137,9 @@ The raw zone preserves the original event data before any transformation is perf
 Amazon S3
 └── raw/
     └── sales events (JSON)
+```
 
-    ### 6. AWS Glue ETL
+### 6. AWS Glue ETL
 
 AWS Glue is used to transform the raw sales data stored in Amazon S3.
 
@@ -147,6 +153,7 @@ AWS Glue ETL
    │
    ▼
 Processed Parquet
+```
 
 ### 7. Amazon S3 — Processed Zone
 
@@ -158,8 +165,9 @@ Parquet provides an efficient columnar format for analytical workloads and helps
 Amazon S3
 └── processed/
     └── sales data (Parquet + Snappy)
+```
 
-    ### 8. AWS Glue Data Catalog
+### 8. AWS Glue Data Catalog
 
 AWS Glue Data Catalog stores the metadata of the processed sales dataset.
 
@@ -193,6 +201,9 @@ SELECT
 FROM sales
 GROUP BY country
 ORDER BY total_sales DESC;
+```
+
+This query calculates total sales by country and orders the results from highest to lowest sales.
 
 ---
 
@@ -202,55 +213,55 @@ ORDER BY total_sales DESC;
 
 The `sales-events` Kafka topic is used to receive and stream sales events through the pipeline.
 
-![Kafka Topic](kafka-topic-created.png)
+![Kafka Topic](screenshots/kafka-topic-created.png)
 
 ### Kafka Producer and Consumer
 
 The Python producer publishes sales events to Kafka, while the consumer receives the events from the `sales-events` topic.
 
-![Kafka Producer and Consumer](kafka-producer-consumer-test.png)
+![Kafka Producer and Consumer](screenshots/kafka-producer-consumer-test.png)
 
 ### Kafka Sales Events
 
 Sales events are published to the Kafka topic and consumed by the Python consumer.
 
-![Kafka Sales Events](kafka-sales-events.png)
+![Kafka Sales Events](screenshots/kafka-sales-events.png)
 
 ### Kafka Consumer Uploading Events to S3
 
 The Python Kafka consumer receives the sales events and uploads the raw JSON data to Amazon S3.
 
-![Kafka Consumer Uploading Events to S3](kafka-consumer-s3-upload.png)
+![Kafka Consumer Uploading Events to S3](screenshots/kafka-consumer-s3-upload.png)
 
 ### S3 Raw JSON Validation
 
 The raw sales events are stored in Amazon S3 as JSON data before the ETL transformation.
 
-![S3 Raw JSON Validation](s3-raw-json-validation.png)
+![Kafka Consumer Uploading Events to S3](screenshots/kafka-consumer-s3-upload.png)
 
 ### AWS Glue ETL
 
 AWS Glue transforms the raw sales data from JSON into an optimized Parquet format for analytical workloads.
 
-![AWS Glue ETL](glue-etl-job.png)
+![AWS Glue ETL](screenshots/glue-etl-processed.png)
 
 ### Athena Processed Data
 
 The processed Parquet dataset is available for analysis through Amazon Athena.
 
-![Athena Processed Data](athena-processed-data.png)
+![Athena Processed Data](screenshots/athena-processed-results.png)
 
 ### Athena Sales Analysis
 
 SQL queries are used in Amazon Athena to analyze the processed sales data and generate business insights.
 
-![Athena Sales Analysis](athena-sales-analysis.png)
+![Athena Sales Analysis](screenshots/athena-sales-analysis.png)
 
 ### Athena Sales by Country
 
 Sales performance is analyzed by country using SQL queries in Amazon Athena.
 
-![Athena Sales by Country](athena-sales-by-country.png)
+![Athena Sales by Country](screenshots/athena-sales-by-country.png)
 
 ---
 
@@ -284,6 +295,7 @@ project-8-kafka-aws/
 ├── architecture.png
 ├── README.md
 └── LICENSE
+```
 
 ---
 
