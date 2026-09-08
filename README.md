@@ -1,25 +1,40 @@
 Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
-<p align="center">
-  <strong>Daniel Ruiz Lopez</strong><br>
-  Junior Data Engineer
-</p>
+\<p *align*="center">
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/danielruizl/">LinkedIn</a> |
-  <a href="https://github.com/danielruiz501">GitHub</a> |
-  <a href="mailto:danielruizlopez889@gmail.com">Email</a>
-</p>
+  \<strong>Daniel Ruiz Lopez\</strong>\<br>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.14-blue?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/Apache%20Kafka-4.1.2-black?logo=apachekafka&logoColor=white" alt="Apache Kafka">
-  <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS">
-  <img src="https://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white" alt="Amazon EC2">
-  <img src="https://img.shields.io/badge/Amazon%20S3-Data%20Lake-red?logo=amazons3&logoColor=white" alt="Amazon S3">
-  <img src="https://img.shields.io/badge/AWS%20Glue-ETL-purple?logo=amazonaws&logoColor=white" alt="AWS Glue">
-  <img src="https://img.shields.io/badge/Amazon%20Athena-SQL-blue?logo=amazonaws&logoColor=white" alt="Amazon Athena">
-</p>
+  Junior Data Engineer
+
+\</p>
+
+\<p *align*="center">
+
+  \<a href="https\://www\.linkedin.com/in/danielruizl/">LinkedIn\</a> |
+
+  \<a href="https\://github.com/danielruiz501">GitHub\</a> |
+
+  \<a href="mailto\:danielruizlopez889\@gmail.com">Email\</a>
+
+\</p>
+
+\<p *align*="center">
+
+  \<img src="https\://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python">
+
+  \<img src="https\://img.shields.io/badge/Apache%20Kafka-4.1.2-black?logo=apachekafka&logoColor=white" alt="Apache Kafka">
+
+  \<img src="https\://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS">
+
+  \<img src="https\://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white" alt="Amazon EC2">
+
+  \<img src="https\://img.shields.io/badge/Amazon%20S3-Data%20Lake-red?logo=amazons3&logoColor=white" alt="Amazon S3">
+
+  \<img src="https\://img.shields.io/badge/AWS%20Glue-ETL-purple?logo=amazonaws&logoColor=white" alt="AWS Glue">
+
+  \<img src="https\://img.shields.io/badge/Amazon%20Athena-SQL-blue?logo=amazonaws&logoColor=white" alt="Amazon Athena">
+
+\</p>
 
 Overview
 
@@ -31,28 +46,51 @@ Dataset note: The sales dataset used in this project is synthetic and was genera
 
 Architecture
 
+![Architecture](architecture/architecture.png)
+![Architecture]\(architecture/architecture.png)
+
+
+
 
 
 Pipeline
 
 Synthetic Sales Data
-        ↓
+
+        ↓
+
 Python Kafka Producer
-        ↓
+
+        ↓
+
 Apache Kafka
-        ↓
+
+        ↓
+
 Python Kafka Consumer
-        ↓
+
+        ↓
+
 Amazon S3 - Raw JSON
-        ↓
+
+        ↓
+
 AWS Glue ETL
-        ↓
+
+        ↓
+
 Amazon S3 - Processed Parquet
-        ↓
+
+        ↓
+
 AWS Glue Data Catalog
-        ↓
+
+        ↓
+
 Amazon Athena
-        ↓
+
+        ↓
+
 SQL Analytics
 
 Technologies
@@ -102,6 +140,7 @@ sales-events
 The topic was configured with:
 
 Partitions: 3
+
 Replication factor: 1
 
 The Python Producer publishes sales events as JSON messages.
@@ -111,16 +150,26 @@ Amazon S3
 S3 was used as the project's data lake.
 
 s3://daniel-kafka-sales-pipeline-8/
+
 │
+
 ├── raw/
-│   ├── ORD-100315.json
-│   ├── ORD-100802.json
-│   ├── ORD-102074.json
-│   ├── ORD-104806.json
-│   └── ORD-104950.json
+
+│   ├── ORD-100315.json
+
+│   ├── ORD-100802.json
+
+│   ├── ORD-102074.json
+
+│   ├── ORD-104806.json
+
+│   └── ORD-104950.json
+
 │
+
 └── processed/
-    └── *.snappy.parquet
+
+    └── \*.snappy.parquet
 
 The raw zone stores the original streaming events as JSON.
 
@@ -142,9 +191,11 @@ Parquet generation
 
 The ETL transformation converted:
 
-quantity       VARCHAR → INTEGER
-unit_price     VARCHAR → DOUBLE
-total_amount   VARCHAR → DOUBLE
+quantity       VARCHAR → INTEGER
+
+unit\_price     VARCHAR → DOUBLE
+
+total\_amount   VARCHAR → DOUBLE
 
 Amazon Athena
 
@@ -154,26 +205,37 @@ Because the ETL converted the numeric fields to appropriate numeric types, analy
 
 Data Flow
 
-1. Data Generation
+1\. Data Generation
 
 A synthetic e-commerce sales dataset containing 10,000 records was generated in CSV format.
 
 Main fields include:
 
-order_id
-customer_id
-product_id
-product_name
-category
-quantity
-unit_price
-total_amount
-country
-payment_method
-order_status
-order_timestamp
+order\_id
 
-2. Kafka Producer
+customer\_id
+
+product\_id
+
+product\_name
+
+category
+
+quantity
+
+unit\_price
+
+total\_amount
+
+country
+
+payment\_method
+
+order\_status
+
+order\_timestamp
+
+2\. Kafka Producer
 
 The Python Producer reads the CSV and publishes sales events to:
 
@@ -182,21 +244,34 @@ sales-events
 Example event:
 
 {
-  "order_id": "ORD-100315",
-  "customer_id": "CUST-12365",
-  "product_id": "PROD-1145",
-  "product_name": "Jeans",
-  "category": "Apparel",
-  "quantity": "2",
-  "unit_price": "91.97",
-  "total_amount": "183.94",
-  "country": "Mexico",
-  "payment_method": "Credit Card",
-  "order_status": "Completed",
-  "order_timestamp": "2026-01-01 02:01:10"
+
+  "order\_id": "ORD-100315",
+
+  "customer\_id": "CUST-12365",
+
+  "product\_id": "PROD-1145",
+
+  "product\_name": "Jeans",
+
+  "category": "Apparel",
+
+  "quantity": "2",
+
+  "unit\_price": "91.97",
+
+  "total\_amount": "183.94",
+
+  "country": "Mexico",
+
+  "payment\_method": "Credit Card",
+
+  "order\_status": "Completed",
+
+  "order\_timestamp": "2026-01-01 02:01:10"
+
 }
 
-3. Kafka Consumer
+3\. Kafka Consumer
 
 The Python Consumer:
 
@@ -206,19 +281,19 @@ Validates JSON events
 
 Skips invalid events
 
-Extracts order_id
+Extracts order\_id
 
 Writes valid events to S3
 
 Uses the EC2 IAM role instead of hard-coded AWS credentials
 
-4. Raw Data Layer
+4\. Raw Data Layer
 
 Valid Kafka events are stored in:
 
 s3://daniel-kafka-sales-pipeline-8/raw/
 
-5. Glue ETL
+5\. Glue ETL
 
 AWS Glue reads the raw JSON data and transforms numeric fields into appropriate data types.
 
@@ -230,20 +305,21 @@ as:
 
 Parquet + Snappy
 
-6. Data Catalog
+6\. Data Catalog
 
 AWS Glue Crawlers discover the schemas for both layers.
 
 Glue database:
 
-kafka_sales_db
+kafka\_sales\_db
 
 Tables:
 
 raw
+
 processed
 
-7. Athena Analytics
+7\. Athena Analytics
 
 Amazon Athena queries the processed data directly from S3.
 
@@ -254,53 +330,84 @@ The project includes analytical queries for:
 Sales by Category
 
 SELECT
-    category,
-    COUNT(*) AS total_orders,
-    SUM(total_amount) AS total_sales
+
+    category,
+
+    COUNT(\*) AS total\_orders,
+
+    SUM(total\_amount) AS total\_sales
+
 FROM processed
+
 GROUP BY category
-ORDER BY total_sales DESC;
+
+ORDER BY total\_sales DESC;
 
 Units Sold and Sales by Category
 
 SELECT
-    category,
-    SUM(quantity) AS units_sold,
-    SUM(total_amount) AS total_sales
+
+    category,
+
+    SUM(quantity) AS units\_sold,
+
+    SUM(total\_amount) AS total\_sales
+
 FROM processed
+
 GROUP BY category
-ORDER BY total_sales DESC;
+
+ORDER BY total\_sales DESC;
 
 Sales by Country
 
 SELECT
-    country,
-    COUNT(*) AS total_orders,
-    SUM(total_amount) AS total_sales
+
+    country,
+
+    COUNT(\*) AS total\_orders,
+
+    SUM(total\_amount) AS total\_sales
+
 FROM processed
+
 GROUP BY country
-ORDER BY total_sales DESC;
+
+ORDER BY total\_sales DESC;
 
 Top Products
 
 SELECT
-    product_name,
-    category,
-    SUM(quantity) AS units_sold,
-    SUM(total_amount) AS total_sales
+
+    product\_name,
+
+    category,
+
+    SUM(quantity) AS units\_sold,
+
+    SUM(total\_amount) AS total\_sales
+
 FROM processed
-GROUP BY product_name, category
-ORDER BY units_sold DESC, total_sales DESC;
+
+GROUP BY product\_name, category
+
+ORDER BY units\_sold DESC, total\_sales DESC;
 
 Sales by Order Status
 
 SELECT
-    order_status,
-    COUNT(*) AS total_orders,
-    SUM(total_amount) AS total_sales
+
+    order\_status,
+
+    COUNT(\*) AS total\_orders,
+
+    SUM(total\_amount) AS total\_sales
+
 FROM processed
-GROUP BY order_status
-ORDER BY total_sales DESC;
+
+GROUP BY order\_status
+
+ORDER BY total\_sales DESC;
 
 Project Results
 
@@ -337,11 +444,17 @@ During development, the Consumer encountered non-JSON test messages that had bee
 The Consumer was updated to handle invalid JSON events gracefully:
 
 Invalid event
-     ↓
+
+     ↓
+
 JSON validation
-     ↓
+
+     ↓
+
 Skip event
-     ↓
+
+     ↓
+
 Continue consuming valid events
 
 This prevents a malformed message from terminating the streaming Consumer.
@@ -359,44 +472,83 @@ No AWS credentials, private keys, or .env files are stored in this repository.
 Project Structure
 
 aws-kafka-real-time-pipeline-8/
+
 │
+
 ├── architecture/
-│   └── architecture.png
+
+│   └── architecture.png
+
 │
+
 ├── config/
-│   └── config.py
+
+│   └── config.py
+
 │
+
 ├── consumer/
-│   └── consumer.py
+
+│   └── consumer.py
+
 │
+
 ├── data/
-│   └── sales_data.csv
+
+│   └── sales\_data.csv
+
 │
+
 ├── producer/
-│   └── producer.py
+
+│   └── producer.py
+
 │
+
 ├── scripts/
+
 │
+
 ├── screenshots/
-│   ├── athena-processed-analysis.png
-│   ├── athena-processed-results.png
-│   ├── athena-query-results.png
-│   ├── athena-sales-analysis.png
-│   ├── athena-sales-by-country.png
-│   ├── athena-sales-by-status.png
-│   ├── athena-top-products.png
-│   ├── glue-etl-processed.png
-│   ├── kafka-consumer-s3-upload.png
-│   ├── kafka-producer-consumer-test.png
-│   ├── kafka-sales-events.png
-│   ├── kafka-topic-created.png
-│   └── s3-raw-json-validation.png
+
+│   ├── athena-processed-analysis.png
+
+│   ├── athena-processed-results.png
+
+│   ├── athena-query-results.png
+
+│   ├── athena-sales-analysis.png
+
+│   ├── athena-sales-by-country.png
+
+│   ├── athena-sales-by-status.png
+
+│   ├── athena-top-products.png
+
+│   ├── glue-etl-processed.png
+
+│   ├── kafka-consumer-s3-upload.png
+
+│   ├── kafka-producer-consumer-test.png
+
+│   ├── kafka-sales-events.png
+
+│   ├── kafka-topic-created.png
+
+│   └── s3-raw-json-validation.png
+
 │
+
 ├── sql/
+
 │
+
 ├── .gitattributes
+
 ├── .gitignore
+
 ├── LICENSE
+
 └── README.md
 
 Screenshots
@@ -405,50 +557,41 @@ Architecture
 
 
 
+
+
 Kafka Topic
 
-
-
+![Kafka Topic](screenshots/kafka-topic-created.png)
 Kafka Producer and Consumer Test
 
-
-
+![Kafka Producer and Consumer Test](screenshots/kafka-producer-consumer-test.png)
 Kafka Sales Events
 
-
-
+![Kafka Sales Events](screenshots/kafka-sales-events.png)
 Consumer Uploading Events to S3
 
-
-
+![Consumer Uploading Events to S3](screenshots/kafka-consumer-s3-upload.png)
 S3 Raw JSON Validation
 
-
-
+![S3 Raw JSON Validation](screenshots/s3-raw-json-validation.png)
 Glue ETL Processed Data
 
-
-
+![Glue ETL Processed Data](screenshots/glue-etl-processed.png)
 Athena Processed Data
 
-
-
+![Athena Processed Data](screenshots/athena-processed-results.png)
 Athena Sales Analysis
 
-
-
+![Athena Sales Analysis](screenshots/athena-sales-analysis.png)
 Athena Sales by Country
 
-
-
+![Athena Sales by Country](screenshots/athena-sales-by-country.png)
 Athena Top Products
 
-
-
+![Athena Top Products](screenshots/athena-top-products.png)
 Athena Sales by Status
 
-
-
+![Athena Sales by Status](screenshots/athena-sales-by-status.png)
 What I Learned
 
 Through this project I practiced:
@@ -518,10 +661,11 @@ Completed — End-to-end Kafka + AWS data engineering pipeline
 Author
 
 Daniel Ruiz Lopez
+
 Junior Data Engineer
 
-LinkedIn: https://www.linkedin.com/in/danielruizl/
+LinkedIn: https\://www\.linkedin.com/in/danielruizl/
 
-GitHub: https://github.com/danielruiz501
+GitHub: https\://github.com/danielruiz501
 
-Email: danielruizlopez889@gmail.com
+Email: danielruizlopez889\@gmail.com
