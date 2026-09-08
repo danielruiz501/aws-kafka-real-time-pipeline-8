@@ -1,6 +1,6 @@
 Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
-<p *align*="center">
+<p align="center">
 
   <strong>Daniel Ruiz Lopez</strong><br>
 
@@ -8,7 +8,7 @@ Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
 </p>
 
-<p *align*="center">
+<p align="center">
 
   <a href="https://www.linkedin.com/in/danielruizl/">LinkedIn</a> |
 
@@ -18,7 +18,7 @@ Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
 </p>
 
-<p *align*="center">
+<p align="center">
 
   <img src="https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python">
 
