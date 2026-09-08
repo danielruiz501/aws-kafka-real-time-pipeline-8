@@ -349,3 +349,23 @@ Possible improvements for a production-oriented version include:
 ## ✅ Status
 
 **Completed — End-to-end real-time sales data pipeline with Apache Kafka and AWS.**
+
+---
+
+## 🎯 Key Takeaways
+
+This project provided hands-on experience building a real-time data engineering pipeline using Apache Kafka and AWS.
+
+Key skills demonstrated:
+
+- Real-time data streaming with Apache Kafka
+- Python-based data producers and consumers
+- Event-driven data ingestion
+- Amazon S3 data lake architecture
+- ETL processing with AWS Glue
+- Data transformation from JSON to Parquet
+- Metadata management with AWS Glue Data Catalog
+- SQL analytics with Amazon Athena
+- AWS IAM permissions and access control
+- CloudWatch monitoring and logging
+- End-to-end data pipeline design
