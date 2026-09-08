@@ -26,13 +26,15 @@ def stream_sales_data():
     with open(DATA_FILE, mode="r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
 
-        for sale in reader:
+        for i, sale in enumerate(reader):
             producer.send(KAFKA_TOPIC, value=sale)
 
             print(f"Sent event: {sale['order_id']}")
 
             time.sleep(1)
 
+            if i == 4:
+                break
 
 if __name__ == "__main__":
     try:

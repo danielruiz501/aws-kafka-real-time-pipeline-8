@@ -1,181 +1,527 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+Project 8 — Real-Time Sales Data Pipeline with Apache Kafka & AWS
 
-# C extensions
-*.so
+<p align="center">
+  <strong>Daniel Ruiz Lopez</strong><br>
+  Junior Data Engineer
+</p>
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+<p align="center">
+  <a href="https://www.linkedin.com/in/danielruizl/">LinkedIn</a> |
+  <a href="https://github.com/danielruiz501">GitHub</a> |
+  <a href="mailto:danielruizlopez889@gmail.com">Email</a>
+</p>
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.14-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Apache%20Kafka-4.1.2-black?logo=apachekafka&logoColor=white" alt="Apache Kafka">
+  <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS">
+  <img src="https://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white" alt="Amazon EC2">
+  <img src="https://img.shields.io/badge/Amazon%20S3-Data%20Lake-red?logo=amazons3&logoColor=white" alt="Amazon S3">
+  <img src="https://img.shields.io/badge/AWS%20Glue-ETL-purple?logo=amazonaws&logoColor=white" alt="AWS Glue">
+  <img src="https://img.shields.io/badge/Amazon%20Athena-SQL-blue?logo=amazonaws&logoColor=white" alt="Amazon Athena">
+</p>
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+Overview
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
+This project implements an end-to-end real-time sales data pipeline using Apache Kafka and AWS.
 
-# Translations
-*.mo
-*.pot
+The pipeline simulates streaming e-commerce sales events from a synthetic dataset, publishes them to an Apache Kafka topic, consumes the events with Python, stores raw JSON data in Amazon S3, transforms the data with AWS Glue, stores the processed data as compressed Parquet, and enables analytical SQL queries with Amazon Athena.
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+Dataset note: The sales dataset used in this project is synthetic and was generated specifically to simulate e-commerce transactions for learning and portfolio purposes.
 
-# Flask stuff:
-instance/
-.webassets-cache
+Architecture
 
-# Scrapy stuff:
-.scrapy
 
-# Sphinx documentation
-docs/_build/
 
-# PyBuilder
-.pybuilder/
-target/
+Pipeline
 
-# Jupyter Notebook
-.ipynb_checkpoints
+Synthetic Sales Data
+        ↓
+Python Kafka Producer
+        ↓
+Apache Kafka
+        ↓
+Python Kafka Consumer
+        ↓
+Amazon S3 - Raw JSON
+        ↓
+AWS Glue ETL
+        ↓
+Amazon S3 - Processed Parquet
+        ↓
+AWS Glue Data Catalog
+        ↓
+Amazon Athena
+        ↓
+SQL Analytics
 
-# IPython
-profile_default/
-ipython_config.py
+Technologies
 
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
+Python
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+Apache Kafka 4.1.2
 
-# UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#uv.lock
+Amazon EC2
 
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
+Amazon S3
 
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
-.pdm.toml
-.pdm-python
-.pdm-build/
+AWS Glue
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
+AWS Glue Data Catalog
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
+Amazon Athena
 
-# SageMath parsed files
-*.sage.py
+Amazon CloudWatch
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+AWS IAM
 
-# Spyder project settings
-.spyderproject
-.spyproject
+Git & GitHub
 
-# Rope project settings
-.ropeproject
+AWS Architecture
 
-# mkdocs documentation
-/site
+Amazon EC2
 
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+An Amazon EC2 instance was used to host:
 
-# Pyre type checker
-.pyre/
+Apache Kafka
 
-# pytype static type analyzer
-.pytype/
+Kafka topic sales-events
 
-# Cython debug symbols
-cython_debug/
+Python Kafka Producer
 
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+Python Kafka Consumer
 
-# Ruff stuff:
-.ruff_cache/
+Kafka was configured using KRaft mode with separate internal and external listeners.
 
-# PyPI configuration file
-.pypirc
+Apache Kafka
 
-# Cursor  
-#  Cursor is an AI-powered code editor.`.cursorignore` specifies files/directories to 
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
-.cursorignore
-.cursorindexingignore
+Kafka topic:
+
+sales-events
+
+The topic was configured with:
+
+Partitions: 3
+Replication factor: 1
+
+The Python Producer publishes sales events as JSON messages.
+
+Amazon S3
+
+S3 was used as the project's data lake.
+
+s3://daniel-kafka-sales-pipeline-8/
+│
+├── raw/
+│   ├── ORD-100315.json
+│   ├── ORD-100802.json
+│   ├── ORD-102074.json
+│   ├── ORD-104806.json
+│   └── ORD-104950.json
+│
+└── processed/
+    └── *.snappy.parquet
+
+The raw zone stores the original streaming events as JSON.
+
+The processed zone stores transformed data in Parquet format using Snappy compression.
+
+AWS Glue
+
+AWS Glue was used for:
+
+Data Catalog
+
+Schema discovery
+
+ETL processing
+
+Data type transformation
+
+Parquet generation
+
+The ETL transformation converted:
+
+quantity       VARCHAR → INTEGER
+unit_price     VARCHAR → DOUBLE
+total_amount   VARCHAR → DOUBLE
+
+Amazon Athena
+
+Athena was used to query the processed Parquet data using SQL.
+
+Because the ETL converted the numeric fields to appropriate numeric types, analytical queries can use functions such as SUM() without requiring repeated CAST() operations.
+
+Data Flow
+
+1. Data Generation
+
+A synthetic e-commerce sales dataset containing 10,000 records was generated in CSV format.
+
+Main fields include:
+
+order_id
+customer_id
+product_id
+product_name
+category
+quantity
+unit_price
+total_amount
+country
+payment_method
+order_status
+order_timestamp
+
+2. Kafka Producer
+
+The Python Producer reads the CSV and publishes sales events to:
+
+sales-events
+
+Example event:
+
+{
+  "order_id": "ORD-100315",
+  "customer_id": "CUST-12365",
+  "product_id": "PROD-1145",
+  "product_name": "Jeans",
+  "category": "Apparel",
+  "quantity": "2",
+  "unit_price": "91.97",
+  "total_amount": "183.94",
+  "country": "Mexico",
+  "payment_method": "Credit Card",
+  "order_status": "Completed",
+  "order_timestamp": "2026-01-01 02:01:10"
+}
+
+3. Kafka Consumer
+
+The Python Consumer:
+
+Reads messages from Kafka
+
+Validates JSON events
+
+Skips invalid events
+
+Extracts order_id
+
+Writes valid events to S3
+
+Uses the EC2 IAM role instead of hard-coded AWS credentials
+
+4. Raw Data Layer
+
+Valid Kafka events are stored in:
+
+s3://daniel-kafka-sales-pipeline-8/raw/
+
+5. Glue ETL
+
+AWS Glue reads the raw JSON data and transforms numeric fields into appropriate data types.
+
+The processed data is written to:
+
+s3://daniel-kafka-sales-pipeline-8/processed/
+
+as:
+
+Parquet + Snappy
+
+6. Data Catalog
+
+AWS Glue Crawlers discover the schemas for both layers.
+
+Glue database:
+
+kafka_sales_db
+
+Tables:
+
+raw
+processed
+
+7. Athena Analytics
+
+Amazon Athena queries the processed data directly from S3.
+
+SQL Analytics
+
+The project includes analytical queries for:
+
+Sales by Category
+
+SELECT
+    category,
+    COUNT(*) AS total_orders,
+    SUM(total_amount) AS total_sales
+FROM processed
+GROUP BY category
+ORDER BY total_sales DESC;
+
+Units Sold and Sales by Category
+
+SELECT
+    category,
+    SUM(quantity) AS units_sold,
+    SUM(total_amount) AS total_sales
+FROM processed
+GROUP BY category
+ORDER BY total_sales DESC;
+
+Sales by Country
+
+SELECT
+    country,
+    COUNT(*) AS total_orders,
+    SUM(total_amount) AS total_sales
+FROM processed
+GROUP BY country
+ORDER BY total_sales DESC;
+
+Top Products
+
+SELECT
+    product_name,
+    category,
+    SUM(quantity) AS units_sold,
+    SUM(total_amount) AS total_sales
+FROM processed
+GROUP BY product_name, category
+ORDER BY units_sold DESC, total_sales DESC;
+
+Sales by Order Status
+
+SELECT
+    order_status,
+    COUNT(*) AS total_orders,
+    SUM(total_amount) AS total_sales
+FROM processed
+GROUP BY order_status
+ORDER BY total_sales DESC;
+
+Project Results
+
+The pipeline was successfully tested end-to-end.
+
+Validated components:
+
+Kafka broker running successfully
+
+sales-events topic created with 3 partitions
+
+Python Producer successfully published sales events
+
+Python Consumer successfully consumed valid events
+
+Invalid Kafka messages were handled without stopping the Consumer
+
+Valid events were written to S3
+
+AWS Glue ETL successfully transformed the data
+
+Processed data was stored as Snappy-compressed Parquet
+
+Glue Data Catalog successfully created raw and processed tables
+
+Athena successfully queried the processed Parquet data
+
+Analytical SQL queries executed successfully
+
+Data Quality Handling
+
+During development, the Consumer encountered non-JSON test messages that had been previously inserted into the Kafka topic.
+
+The Consumer was updated to handle invalid JSON events gracefully:
+
+Invalid event
+     ↓
+JSON validation
+     ↓
+Skip event
+     ↓
+Continue consuming valid events
+
+This prevents a malformed message from terminating the streaming Consumer.
+
+IAM and Security
+
+The project follows the principle of least privilege where practical.
+
+The EC2 application uses an IAM role to access S3 instead of storing AWS access keys inside the Python code.
+
+The Kafka external listener was restricted through the EC2 Security Group rather than being exposed to the entire internet.
+
+No AWS credentials, private keys, or .env files are stored in this repository.
+
+Project Structure
+
+aws-kafka-real-time-pipeline-8/
+│
+├── architecture/
+│   └── architecture.png
+│
+├── config/
+│   └── config.py
+│
+├── consumer/
+│   └── consumer.py
+│
+├── data/
+│   └── sales_data.csv
+│
+├── producer/
+│   └── producer.py
+│
+├── scripts/
+│
+├── screenshots/
+│   ├── athena-processed-analysis.png
+│   ├── athena-processed-results.png
+│   ├── athena-query-results.png
+│   ├── athena-sales-analysis.png
+│   ├── athena-sales-by-country.png
+│   ├── athena-sales-by-status.png
+│   ├── athena-top-products.png
+│   ├── glue-etl-processed.png
+│   ├── kafka-consumer-s3-upload.png
+│   ├── kafka-producer-consumer-test.png
+│   ├── kafka-sales-events.png
+│   ├── kafka-topic-created.png
+│   └── s3-raw-json-validation.png
+│
+├── sql/
+│
+├── .gitattributes
+├── .gitignore
+├── LICENSE
+└── README.md
+
+Screenshots
+
+Architecture
+
+
+
+Kafka Topic
+
+
+
+Kafka Producer and Consumer Test
+
+
+
+Kafka Sales Events
+
+
+
+Consumer Uploading Events to S3
+
+
+
+S3 Raw JSON Validation
+
+
+
+Glue ETL Processed Data
+
+
+
+Athena Processed Data
+
+
+
+Athena Sales Analysis
+
+
+
+Athena Sales by Country
+
+
+
+Athena Top Products
+
+
+
+Athena Sales by Status
+
+
+
+What I Learned
+
+Through this project I practiced:
+
+Apache Kafka fundamentals
+
+Kafka topics and partitions
+
+Kafka Producer and Consumer development with Python
+
+Real-time event streaming concepts
+
+AWS EC2 deployment
+
+Amazon S3 data lake architecture
+
+IAM roles and least-privilege access
+
+AWS Glue Crawlers
+
+AWS Glue ETL with Spark
+
+Data type transformations
+
+Parquet and Snappy compression
+
+AWS Glue Data Catalog
+
+Amazon Athena
+
+Analytical SQL
+
+Handling malformed streaming events
+
+Git and GitHub project organization
+
+Limitations and Future Improvements
+
+This project was designed as a portfolio and learning implementation.
+
+Potential future improvements include:
+
+Kafka replication across multiple brokers
+
+Kafka TLS/SASL authentication
+
+Infrastructure as Code with Terraform
+
+Automated deployment
+
+CI/CD pipeline
+
+Real-time monitoring and alerting with CloudWatch
+
+More advanced data quality validation
+
+Streaming transformations with a dedicated stream-processing framework
+
+Automated Glue job execution
+
+More analytical dashboards using Amazon QuickSight
+
+Status
+
+Completed — End-to-end Kafka + AWS data engineering pipeline
+
+Author
+
+Daniel Ruiz Lopez
+Junior Data Engineer
+
+LinkedIn: https://www.linkedin.com/in/danielruizl/
+
+GitHub: https://github.com/danielruiz501
+
+Email: danielruizlopez889@gmail.com
